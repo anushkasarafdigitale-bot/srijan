@@ -185,9 +185,9 @@ export default function App() {
                   </div>
                 </div>
                 
-                <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="bg-[#0b529e]/5 p-8 rounded-xl shadow-lg border border-[#0b529e]/10 h-full flex flex-col justify-center">
-                  <h3 className="text-[24px] text-[#0b529e] mb-4 uppercase tracking-wide flex items-center gap-3">
-                    <Activity className="w-6 h-6 text-[#e92429]" />
+                <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="bg-[#0b529e] p-8 rounded-xl shadow-lg h-full flex flex-col justify-center">
+                  <h3 className="text-[24px] text-white mb-4 uppercase tracking-wide flex items-center gap-3">
+                    <Activity className="w-6 h-6 text-white" />
                     Key Pointers
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
@@ -313,7 +313,7 @@ export default function App() {
                       viewport={{ once: true }}
                       className="group relative flex flex-col justify-end py-6 px-4 sm:p-6 md:p-5 lg:p-6 text-left bg-gray-900 transition-all duration-500 min-h-[220px] sm:min-h-[260px] cursor-pointer overflow-hidden rounded-xl shadow-lg hover:shadow-2xl"
                     >
-                      <div className="absolute inset-0 bg-[#0b529e] opacity-0 group-hover:opacity-90 transition-opacity duration-500 z-10"></div>
+                      <div className="absolute inset-0 bg-[#e92429] opacity-0 group-hover:opacity-90 transition-opacity duration-500 z-10"></div>
                       <img 
                         src={usp.img} 
                         alt={usp.title.replace('<br/>', ' ')} 
@@ -322,7 +322,7 @@ export default function App() {
                       <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent z-[5]"></div>
                       
                       <div className="relative z-20 flex flex-col h-full justify-between">
-                        <div className="text-[#e92429] group-hover:text-white font-bold text-[32px] opacity-80 group-hover:opacity-100 transition-colors drop-shadow-md" style={{ fontWeight: 900 }}>0{idx + 1}</div>
+                        <div className="text-[#0b529e] group-hover:text-white font-bold text-[32px] opacity-80 group-hover:opacity-100 transition-colors drop-shadow-md" style={{ fontWeight: 900 }}>0{idx + 1}</div>
                         <div className="pr-4 sm:pr-8">
                           <h3 className="font-bold text-white uppercase text-[15px] sm:text-[17px] tracking-[0.05em] mb-2 leading-tight transition-colors" dangerouslySetInnerHTML={{ __html: usp.title }}></h3>
                           <div className="max-h-0 overflow-hidden group-hover:max-h-[200px] transition-all duration-700 ease-in-out">
@@ -492,89 +492,91 @@ export default function App() {
             
             {/* 8. Project Resources */}
             <div className="w-full max-w-5xl mx-auto">
-              <div className="bg-gradient-to-b from-[#0b529e]/5 to-transparent rounded-2xl px-6 pt-6 pb-4 relative z-10 flex flex-col items-center w-full">
-                <div className="mb-4 w-full flex justify-center">
-                  <div className="text-center bg-white shadow-sm p-3 rounded-xl border border-gray-100 inline-block w-full max-w-lg">
-                    <h2 className="text-[24px] text-[#0b529e] uppercase tracking-wide px-8 text-balance">PROJECT LANDSCAPE VIEW</h2>
+              <div className="relative z-10 flex flex-col items-center w-full">
+                <div className="bg-[#0b529e] rounded-3xl p-6 md:p-10 w-full flex flex-col items-center">
+                  <div className="mb-8 w-full flex justify-center">
+                    <div className="text-center inline-block w-full max-w-2xl">
+                      <h2 className="text-[24px] text-white uppercase tracking-wide px-8 text-balance">PROJECT LANDSCAPE VIEW</h2>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex gap-4 mb-6 relative z-10 justify-center">
-                  {['Master Plan', 'Floor Plans'].map(tab => (
-                    <button
-                      key={tab}
-                      onClick={() => setActiveResourceTab(tab)}
-                      className={`px-8 py-3 text-sm font-bold uppercase tracking-wider rounded-full transition-all shadow-sm ${
-                        activeResourceTab === tab ? 'bg-[#0b529e] text-white shadow-md scale-105' : 'bg-white text-gray-500 hover:bg-gray-50 hover:text-gray-800'
-                      }`}
-                    >
-                      <span>{tab}</span>
-                    </button>
-                  ))}
-                </div>
-                
-                <div className="flex flex-col md:flex-row min-h-[350px] w-full bg-white rounded-2xl shadow-xl overflow-hidden relative z-10 border border-gray-100">
-                  <div className="flex-1 flex items-center justify-center p-6 bg-gradient-to-r from-gray-50 to-white overflow-hidden">
-                    <motion.div 
-                      key={activeResourceTab}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      className="relative text-center w-full h-full min-h-[300px] flex flex-col items-center justify-center py-6 gap-6"
-                    >
-                      {activeResourceTab === 'Floor Plans' ? (
-                        <div className="relative w-full h-[400px] md:h-[600px] flex items-center justify-center bg-white rounded-lg p-4 border border-gray-100">
-                          {floorPlanImages.map((img, idx) => (
-                            <img 
-                              key={idx}
-                              src={img}
-                              alt={`Floor Plan ${idx + 1}`}
-                              className={`absolute w-full h-full object-contain p-4 transition-opacity duration-500 ${
-                                idx === currentFloorPlanIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                              }`}
-                            />
-                          ))}
-                          
-                          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2 sm:px-4 z-20 pointer-events-none">
-                            <button 
-                              onClick={handlePrevFloorPlan}
-                              className="pointer-events-auto w-10 h-10 bg-white/80 hover:bg-white text-[#0b529e] rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 backdrop-blur-sm"
-                              aria-label="Previous floor plan"
-                            >
-                              <ChevronLeft className="w-6 h-6" />
-                            </button>
-                            <button 
-                              onClick={handleNextFloorPlan}
-                              className="pointer-events-auto w-10 h-10 bg-white/80 hover:bg-white text-[#0b529e] rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 backdrop-blur-sm"
-                              aria-label="Next floor plan"
-                            >
-                              <ChevronRight className="w-6 h-6" />
-                            </button>
-                          </div>
-                          
-                          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-                            {floorPlanImages.map((_, idx) => (
-                              <button
+                  
+                  <div className="flex gap-4 mb-6 relative z-10 justify-center">
+                    {['Master Plan', 'Floor Plans'].map(tab => (
+                      <button
+                        key={tab}
+                        onClick={() => setActiveResourceTab(tab)}
+                        className={`px-8 py-3 text-sm font-bold uppercase tracking-wider rounded-full transition-all ${
+                          activeResourceTab === tab ? 'bg-[#e92429] text-white shadow-md scale-105' : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
+                        }`}
+                      >
+                        <span>{tab}</span>
+                      </button>
+                    ))}
+                  </div>
+                  
+                  <div className="flex flex-col md:flex-row min-h-[350px] w-full overflow-hidden relative z-10">
+                    <div className="flex-1 flex items-center justify-center overflow-hidden">
+                      <motion.div 
+                        key={activeResourceTab}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                        className="relative text-center w-full h-full min-h-[300px] flex flex-col items-center justify-center gap-6"
+                      >
+                        {activeResourceTab === 'Floor Plans' ? (
+                          <div className="relative w-full h-[400px] md:h-[600px] flex items-center justify-center rounded-lg">
+                            {floorPlanImages.map((img, idx) => (
+                              <img 
                                 key={idx}
-                                onClick={() => setCurrentFloorPlanIndex(idx)}
-                                className={`h-2 rounded-full transition-all ${
-                                  idx === currentFloorPlanIndex ? 'bg-[#e92429] w-8' : 'bg-gray-300 hover:bg-gray-400 w-2'
+                                src={img}
+                                alt={`Floor Plan ${idx + 1}`}
+                                className={`absolute w-full h-full object-contain transition-opacity duration-500 ${
+                                  idx === currentFloorPlanIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                                 }`}
-                                aria-label={`Go to floor plan ${idx + 1}`}
                               />
                             ))}
+                            
+                            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2 sm:px-4 z-20 pointer-events-none">
+                              <button 
+                                onClick={handlePrevFloorPlan}
+                                className="pointer-events-auto w-10 h-10 bg-white/80 hover:bg-white text-[#0b529e] rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 backdrop-blur-sm"
+                                aria-label="Previous floor plan"
+                              >
+                                <ChevronLeft className="w-6 h-6" />
+                              </button>
+                              <button 
+                                onClick={handleNextFloorPlan}
+                                className="pointer-events-auto w-10 h-10 bg-white/80 hover:bg-white text-[#0b529e] rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 backdrop-blur-sm"
+                                aria-label="Next floor plan"
+                              >
+                                <ChevronRight className="w-6 h-6" />
+                              </button>
+                            </div>
+                            
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                              {floorPlanImages.map((_, idx) => (
+                                <button
+                                  key={idx}
+                                  onClick={() => setCurrentFloorPlanIndex(idx)}
+                                  className={`h-2 rounded-full transition-all ${
+                                    idx === currentFloorPlanIndex ? 'bg-[#e92429] w-8' : 'bg-white/50 hover:bg-white/80 w-2'
+                                  }`}
+                                  aria-label={`Go to floor plan ${idx + 1}`}
+                                />
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                      ) : (
-                        <div className="w-full h-[400px] md:h-[600px] flex items-center justify-center p-2 bg-white rounded-lg border border-gray-100">
-                          <img 
-                            src="https://i.ibb.co/N2Ph8GJ2/Logistic-Park-Barasat-Logo-Direct-AW.png"
-                            alt="Logistic Park Barasat Logo Direct AW"
-                            className="w-full h-full object-contain mx-auto rounded"
-                          />
-                        </div>
-                      )}
-                    </motion.div>
+                        ) : (
+                          <div className="w-full h-[400px] md:h-[600px] flex items-center justify-center p-2 rounded-lg">
+                            <img 
+                              src="https://i.ibb.co/N2Ph8GJ2/Logistic-Park-Barasat-Logo-Direct-AW.png"
+                              alt="Logistic Park Barasat Logo Direct AW"
+                              className="w-full h-full object-contain mx-auto rounded"
+                            />
+                          </div>
+                        )}
+                      </motion.div>
+                    </div>
                   </div>
                 </div>
                 
@@ -675,10 +677,10 @@ export default function App() {
                   ></iframe>
                 </div>
                 
-                <div className="w-full md:w-1/2 flex flex-col bg-white z-20 max-h-[450px]">
-                  <div className="p-6 flex flex-col items-center justify-center text-center border-b border-gray-50 flex-none gap-4">
-                    <h2 className="text-[24px] text-[#0b529e] uppercase tracking-wide text-balance leading-snug">WELCOME TO THE GATEWAY OF EASE</h2>
-                    <p className="text-[18px] text-[#e92429] uppercase tracking-wide font-bold text-balance">Seamless Access to Key Commercial Corridors</p>
+                <div className="w-full md:w-1/2 flex flex-col bg-[#e92429] z-20 max-h-[450px]">
+                  <div className="p-6 flex flex-col items-center justify-center text-center border-b border-red-500/30 flex-none gap-4">
+                    <h2 className="text-[24px] text-white uppercase tracking-wide text-balance leading-snug">WELCOME TO THE GATEWAY OF EASE</h2>
+                    <p className="text-[18px] text-white/90 uppercase tracking-wide font-bold text-balance">Seamless Access to Key Commercial Corridors</p>
                   </div>
                   
                   <div className="flex-1 p-6 overflow-y-auto">
@@ -703,10 +705,10 @@ export default function App() {
                           whileInView={{opacity: 1, y: 0}} 
                           transition={{delay: i * 0.05}} 
                           viewport={{ once: true }}
-                          className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-[#0b529e] hover:text-white transition-all cursor-pointer group shadow-sm hover:shadow-md"
+                          className="flex items-center justify-between p-3 bg-red-800/40 rounded-lg hover:bg-white hover:text-[#e92429] transition-all cursor-pointer group shadow-sm hover:shadow-md"
                         >
-                          <span className="font-medium text-gray-700 group-hover:text-white text-sm">{location}</span>
-                          <MapPin className="w-4 h-4 text-[#e92429] shrink-0 ml-4 group-hover:text-white transition-colors" />
+                          <span className="font-medium text-white group-hover:text-[#e92429] text-sm">{location}</span>
+                          <MapPin className="w-4 h-4 text-red-200 shrink-0 ml-4 group-hover:text-[#e92429] transition-colors" />
                         </motion.div>
                       ))}
                     </div>
@@ -747,12 +749,12 @@ export default function App() {
 
       {/* 12. Footer */}
       <footer className="bg-[#0b529e] text-white mt-auto">
-        <div className="w-full max-w-full px-4 md:px-8 xl:px-16 flex flex-col md:flex-row relative z-10 py-8 md:py-12 gap-6 md:gap-8">
+        <div className="w-full max-w-full px-4 md:px-8 xl:px-16 flex flex-col md:flex-row relative z-10 py-8 md:py-12 gap-6 md:gap-8 items-center text-center md:items-start md:text-left">
           
           {/* Col 1 */}
-          <div className="flex-1 flex flex-col justify-between">
+          <div className="flex-1 flex flex-col justify-between items-center text-center">
             <h4 className="text-gray-300 uppercase tracking-wider mb-3 md:mb-6">Lets Connect</h4>
-            <div className="w-32 md:w-48 relative flex items-center justify-start overflow-hidden">
+            <div className="w-32 md:w-48 relative flex items-center justify-center overflow-hidden">
                <img 
                   src="https://i.ibb.co/cSWLfkKq/Logistic-Park-Barasat-Logo-Direct-AW.png"
                   alt="Logistic Park Barasat Logo Direct AW"
@@ -760,14 +762,14 @@ export default function App() {
                />
                <span className="sr-only">Developer Logo</span>
             </div>
-            <div className="mt-4 md:mt-8 text-sm text-blue-200 flex flex-col">
+            <div className="mt-4 md:mt-8 text-sm text-blue-200 flex flex-col items-center">
               <span className="font-semibold block mb-1">RERA No:</span> 
               <span>WBRERA/P/2026/000000</span>
             </div>
           </div>
           
           {/* Col 2 */}
-          <div className="flex-1 flex flex-col text-blue-100 mt-6 md:mt-0">
+          <div className="flex-1 flex flex-col items-center text-center text-blue-100 mt-6 md:mt-0">
             <div className="mb-4 md:mb-6">
               <h4 className="text-gray-300 uppercase tracking-wider mb-1 md:mb-2">Address</h4>
               <p className="text-[14px] leading-relaxed">
@@ -776,19 +778,19 @@ export default function App() {
                 West Bengal
               </p>
             </div>
-            <div className="flex items-center text-sm mb-2 md:mb-3">
-              <div className="font-semibold w-24 md:w-28">E-Mail ID:</div>
-              <div className="flex-1 text-xs md:text-sm">info@srijanbarasat.com</div>
+            <div className="flex flex-col items-center text-sm mb-2 md:mb-3">
+              <div className="font-semibold">E-Mail ID:</div>
+              <div className="text-xs md:text-sm">info@srijanbarasat.com</div>
             </div>
-            <div className="flex items-center text-sm mb-2 md:mb-3">
-              <div className="font-semibold w-24 md:w-28">Phone:</div>
-              <div className="flex-1 text-xs md:text-sm">+91 98765 43210</div>
+            <div className="flex flex-col items-center text-sm mb-2 md:mb-3">
+              <div className="font-semibold">Phone:</div>
+              <div className="text-xs md:text-sm">+91 98765 43210</div>
             </div>
           </div>
           
           {/* Col 3 */}
-          <div className="flex-1 flex flex-col mt-6 md:mt-0">
-            <div className="flex flex-col mb-6 md:mb-8 text-sm">
+          <div className="flex-1 flex flex-col items-center text-center mt-6 md:mt-0">
+            <div className="flex flex-col items-center mb-6 md:mb-8 text-sm">
               <a href="#about" className="uppercase tracking-widest hover:text-[#e92429] transition-colors mb-3 md:mb-4"><span>About</span></a>
               <a href="#amenities" className="uppercase tracking-widest hover:text-[#e92429] transition-colors mb-3 md:mb-4"><span>Amenities</span></a>
               <a href="#connectivity" className="uppercase tracking-widest hover:text-[#e92429] transition-colors mb-3 md:mb-4"><span>Connectivity</span></a>
@@ -796,7 +798,7 @@ export default function App() {
               <a href="#" className="uppercase tracking-widest text-gray-400 hover:text-white transition-colors"><span>Privacy Policy</span></a>
             </div>
             
-            <div className="flex gap-4">
+            <div className="flex gap-4 justify-center">
               <a href="https://drive.google.com/file/d/1CqavpdDpfuT4FqS8ltJjJYLflJrU4zhE/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="w-10 h-10 md:w-12 md:h-12 bg-[#e92429] rounded-full flex items-center justify-center hover:bg-[#d01d24] transition-colors text-white shadow-md">
                 <Download className="w-4 h-4 md:w-5 md:h-5"/>
               </a>
