@@ -35,6 +35,12 @@ export default function App() {
   const [activeSpecTab, setActiveSpecTab] = useState('Facilities');
   const [activeResourceTab, setActiveResourceTab] = useState('Master Plan');
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0);
+  const [currentFloorPlanIndex, setCurrentFloorPlanIndex] = useState(0);
+
+  const floorPlanImages = [
+    "https://i.ibb.co/W4mJZZm3/Logistic-Park-Barasat-Logo-Direct-AW-03.png",
+    "https://i.ibb.co/mF154GSg/Logistic-Park-Barasat-Logo-Direct-AW-04.png"
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -51,14 +57,22 @@ export default function App() {
     setCurrentGalleryIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
   };
 
+  const handleNextFloorPlan = () => {
+    setCurrentFloorPlanIndex((prev) => (prev + 1) % floorPlanImages.length);
+  };
+
+  const handlePrevFloorPlan = () => {
+    setCurrentFloorPlanIndex((prev) => (prev - 1 + floorPlanImages.length) % floorPlanImages.length);
+  };
+
   return (
     <div className={`min-h-screen bg-white font-sans text-gray-800 flex flex-col relative`}>
 
       {/* 1. Header Navigation */}
       <header className="sticky top-0 z-40 bg-white shadow-sm">
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-8 py-2 min-h-[4rem] flex items-center justify-between">
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-8 py-1 min-h-[3.5rem] flex items-center justify-between">
           <a href="#" className="block">
-            <img src="https://i.ibb.co/Z6BqK6Cr/Logistic-Park-Barasat-Logo-Direct-AW.png" alt="Project Logo" className="h-16 md:h-20 object-contain" />
+            <img src="https://i.ibb.co/Z6BqK6Cr/Logistic-Park-Barasat-Logo-Direct-AW.png" alt="Project Logo" className="h-12 md:h-16 object-contain" />
           </a>
           
           <div className="flex items-center space-x-6">
@@ -96,10 +110,10 @@ export default function App() {
         {/* Mobile Navigation Dropdown */}
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 flex flex-col py-4 px-6 z-50">
-            <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="py-3 text-sm font-bold uppercase tracking-widest text-[#0b529e] border-b border-gray-100">About</a>
-            <a href="#amenities" onClick={() => setIsMobileMenuOpen(false)} className="py-3 text-sm font-bold uppercase tracking-widest text-[#0b529e] border-b border-gray-100">Amenities</a>
-            <a href="#specifications" onClick={() => setIsMobileMenuOpen(false)} className="py-3 text-sm font-bold uppercase tracking-widest text-[#0b529e] border-b border-gray-100">Specifications</a>
-            <a href="#gallery" onClick={() => setIsMobileMenuOpen(false)} className="py-3 text-sm font-bold uppercase tracking-widest text-[#0b529e] border-b border-gray-100">Gallery</a>
+            <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="py-3 text-sm font-bold uppercase tracking-wider text-[#0b529e] border-b border-gray-100">About</a>
+            <a href="#amenities" onClick={() => setIsMobileMenuOpen(false)} className="py-3 text-sm font-bold uppercase tracking-wider text-[#0b529e] border-b border-gray-100">Amenities</a>
+            <a href="#specifications" onClick={() => setIsMobileMenuOpen(false)} className="py-3 text-sm font-bold uppercase tracking-wider text-[#0b529e] border-b border-gray-100">Specifications</a>
+            <a href="#gallery" onClick={() => setIsMobileMenuOpen(false)} className="py-3 text-sm font-bold uppercase tracking-wider text-[#0b529e] border-b border-gray-100">Gallery</a>
             <button 
               onClick={() => { setIsModalOpen(true); setIsMobileMenuOpen(false); }}
               className="mt-4 bg-[#0b529e] text-white px-6 py-3 font-medium text-sm uppercase tracking-wide rounded-full text-center"
@@ -119,10 +133,10 @@ export default function App() {
           
           {/* Centered Content */}
           <div className="relative z-10 flex flex-col items-center text-center w-full max-w-7xl mx-auto px-4 md:px-8">
-            <h1 className="text-[65px] font-bold text-white mb-4 uppercase tracking-[0.15em] leading-tight">
+            <h1 className="text-[65px] font-bold text-white mb-4 uppercase tracking-[0.10em] leading-tight">
              A Centre of Convenience
             </h1>
-            <h2 className="text-[28px] text-gray-200 mb-8 font-light">
+            <h2 className="text-[28px] text-gray-200 mb-6 font-bold">
              Built for Industrial Excellence
             </h2>
             <button
@@ -136,9 +150,9 @@ export default function App() {
 
           {/* Right Floating Actions */}
           <div className="fixed right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-[100]">
-            <a href="tel:" className="bg-white text-[#0b529e] w-14 h-14 rounded-full flex items-center justify-center text-xs font-bold uppercase tracking-widest shadow-2xl hover:bg-gray-50 transition-all hover:scale-105 border border-gray-100"><span>Call</span></a>
-            <a href="https://wa.me/" className="bg-white text-[#25D366] w-14 h-14 rounded-full flex items-center justify-center text-xs font-bold uppercase tracking-widest shadow-2xl hover:bg-gray-50 transition-all hover:scale-105 border border-gray-100"><span>WA</span></a>
-            <button onClick={() => setIsModalOpen(true)} className="bg-white text-[#e92429] w-14 h-14 rounded-full flex items-center justify-center text-xs font-bold uppercase tracking-widest shadow-2xl hover:bg-gray-50 transition-all hover:scale-105 border border-gray-100"><span>EN</span></button>
+            <a href="tel:" className="bg-white text-[#0b529e] w-14 h-14 rounded-full flex items-center justify-center text-xs font-bold uppercase tracking-wider shadow-2xl hover:bg-gray-50 transition-all hover:scale-105 border border-gray-100"><span>Call</span></a>
+            <a href="https://wa.me/" className="bg-white text-[#25D366] w-14 h-14 rounded-full flex items-center justify-center text-xs font-bold uppercase tracking-wider shadow-2xl hover:bg-gray-50 transition-all hover:scale-105 border border-gray-100"><span>WA</span></a>
+            <button onClick={() => setIsModalOpen(true)} className="bg-white text-[#e92429] w-14 h-14 rounded-full flex items-center justify-center text-xs font-bold uppercase tracking-wider shadow-2xl hover:bg-gray-50 transition-all hover:scale-105 border border-gray-100"><span>EN</span></button>
           </div>
 
           {/* New Launch Patch */}
@@ -152,14 +166,14 @@ export default function App() {
           {/* =========================================
               ABOUT SECTION 
               ========================================= */}
-          <section id="about" className="scroll-mt-24 flex flex-col gap-12 md:gap-20">
+          <section id="about" className="scroll-mt-24 flex flex-col gap-10 md:gap-14">
             
             {/* 3. About The Project */}
             <div className="w-full max-w-5xl mx-auto">
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="grid md:grid-cols-2 gap-8 lg:gap-16 items-stretch">
                 <div className="pr-0 lg:pr-4 h-full flex flex-col justify-center">
-                  <h2 className="text-[24px] md:text-[28px] font-bold text-[#0b529e] mb-6 uppercase tracking-widest inline-block pb-2 text-balance leading-snug">SRIJAN'S FUTURE-READY INDUSTRIAL SPACES DESIGNED TO SCALE</h2>
-                  <div className="h-1 w-24 bg-[#e92429] mb-8"></div>
+                  <h2 className="text-[24px] md:text-[28px] text-[#0b529e] mb-2 uppercase tracking-wide inline-block pb-1 text-balance leading-snug">SRIJAN'S FUTURE-READY INDUSTRIAL SPACES DESIGNED TO SCALE</h2>
+                  <div className="h-1 w-24 bg-[#e92429] mb-6"></div>
                   <p className="text-gray-700 mb-10 leading-relaxed text-justify text-[15px] pt-4 text-balance">
                     Srijan Barasat Logistics Park is a Grade A industrial and garment-focused logistics destination strategically located on Jessore Road, Barasat. Designed for high-efficiency operations, the park combines scalable infrastructure, seamless truck movement, advanced logistics support, and excellent regional connectivity to create a business ecosystem built for growth.
                   </p>
@@ -172,7 +186,7 @@ export default function App() {
                 </div>
                 
                 <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="bg-[#0b529e]/5 p-8 rounded-xl shadow-lg border border-[#0b529e]/10 h-full flex flex-col justify-center">
-                  <h3 className="text-[24px] font-bold text-[#0b529e] mb-6 uppercase tracking-widest flex items-center gap-3">
+                  <h3 className="text-[24px] text-[#0b529e] mb-4 uppercase tracking-wide flex items-center gap-3">
                     <Activity className="w-6 h-6 text-[#e92429]" />
                     Key Pointers
                   </h3>
@@ -267,7 +281,7 @@ export default function App() {
             {/* 5. Top 4 USPs */}
             <div className="w-full max-w-4xl mx-auto">
               <div>
-                <h2 className="text-center text-[24px] font-bold text-[#0b529e] mb-12 uppercase tracking-widest text-balance">REDEFINING BUSINESS EFFICIENCY WITH WORLD-CLASS INFRASTRUCTURE</h2>
+                <h2 className="text-center text-[24px] text-[#0b529e] mb-4 uppercase tracking-wide text-balance">REDEFINING BUSINESS EFFICIENCY WITH WORLD-CLASS INFRASTRUCTURE</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                   {[
                     { 
@@ -325,7 +339,7 @@ export default function App() {
             {/* 6. Top Trusted Brands */}
             <div className="w-full max-w-5xl mx-auto overflow-hidden">
               <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
-                <h2 className="text-center text-[24px] font-bold text-[#0b529e] mb-8 uppercase tracking-widest text-balance">TRUSTED BY RENOWNED BRANDS</h2>
+                <h2 className="text-center text-[24px] text-[#0b529e] mb-2 uppercase tracking-wide text-balance">TRUSTED BY RENOWNED BRANDS</h2>
                 <div className="relative w-full overflow-hidden py-4 border-y border-gray-100 flex shadow-inner bg-gray-50/50">
                   <motion.div 
                     animate={{ x: ["0%", "-50%"] }}
@@ -352,7 +366,7 @@ export default function App() {
           {/* =========================================
               AMENITIES SECTION 
               ========================================= */}
-          <section id="amenities" className="scroll-mt-24 flex flex-col gap-12 md:gap-20">
+          <section id="amenities" className="scroll-mt-24 flex flex-col gap-10 md:gap-14">
             
             {/* 7. Facilities & Specifications */}
             <div className="w-full max-w-4xl mx-auto">
@@ -367,7 +381,7 @@ export default function App() {
                 
                 <div className="w-full md:w-1/2 flex flex-col bg-white z-20 h-auto">
                   <div className="p-6 pb-2 text-center border-b border-gray-50 shrink-0">
-                    <h2 className="text-[24px] font-bold font-heading text-[#0b529e] mb-4 uppercase tracking-widest text-balance leading-snug">
+                    <h2 className="text-[24px] font-heading text-[#0b529e] mb-2 uppercase tracking-wide text-balance leading-snug">
                       DESIGNED FOR SPEED, SCALE & SEAMLESS OPERATIONS
                     </h2>
                     
@@ -390,7 +404,7 @@ export default function App() {
                     {activeSpecTab === 'Facilities' && (
                       <div className="space-y-6 animate-in fade-in duration-500">
                         <motion.div initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} transition={{delay: 0.1}}>
-                          <h3 className="font-bold text-[#0b529e] flex items-center mb-2 text-[18px]">
+                          <h3 className="text-[#0b529e] flex items-center mb-2 text-[18px]">
                             <span className="w-6 h-6 bg-[#e92429] text-white rounded-full flex items-center justify-center mr-3 shadow-md font-bold text-xs">1</span>
                             Access & Movements
                           </h3>
@@ -401,7 +415,7 @@ export default function App() {
                           </ul>
                         </motion.div>
                         <motion.div initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} transition={{delay: 0.2}}>
-                          <h3 className="font-bold text-[#0b529e] flex items-center mb-2 text-[18px]">
+                          <h3 className="text-[#0b529e] flex items-center mb-2 text-[18px]">
                             <span className="w-6 h-6 bg-[#e92429] text-white rounded-full flex items-center justify-center mr-3 shadow-md font-bold text-xs">2</span>
                             Logistic Infrastructure
                           </h3>
@@ -412,7 +426,7 @@ export default function App() {
                           </ul>
                         </motion.div>
                         <motion.div initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} transition={{delay: 0.3}}>
-                          <h3 className="font-bold text-[#0b529e] flex items-center mb-2 text-[18px]">
+                          <h3 className="text-[#0b529e] flex items-center mb-2 text-[18px]">
                             <span className="w-6 h-6 bg-[#e92429] text-white rounded-full flex items-center justify-center mr-3 shadow-md font-bold text-xs">3</span>
                             Utilities & Power
                           </h3>
@@ -429,7 +443,7 @@ export default function App() {
                     {activeSpecTab === 'Specifications' && (
                       <div className="space-y-6 animate-in fade-in duration-500">
                         <motion.div initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} transition={{delay: 0.1}}>
-                          <h3 className="font-bold text-[#0b529e] flex items-center mb-2 text-[18px]">
+                          <h3 className="text-[#0b529e] flex items-center mb-2 text-[18px]">
                             <span className="w-6 h-6 bg-[#e92429] text-white rounded-full flex items-center justify-center mr-3 shadow-md font-bold text-xs">1</span>
                             Building Specification
                           </h3>
@@ -440,7 +454,7 @@ export default function App() {
                           </ul>
                         </motion.div>
                         <motion.div initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} transition={{delay: 0.2}}>
-                          <h3 className="font-bold text-[#0b529e] flex items-center mb-2 text-[18px]">
+                          <h3 className="text-[#0b529e] flex items-center mb-2 text-[18px]">
                             <span className="w-6 h-6 bg-[#e92429] text-white rounded-full flex items-center justify-center mr-3 shadow-md font-bold text-xs">2</span>
                             Safety & Security
                           </h3>
@@ -452,7 +466,7 @@ export default function App() {
                           </ul>
                         </motion.div>
                         <motion.div initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} transition={{delay: 0.3}}>
-                          <h3 className="font-bold text-[#0b529e] flex items-center mb-2 text-[18px]">
+                          <h3 className="text-[#0b529e] flex items-center mb-2 text-[18px]">
                             <span className="w-6 h-6 bg-[#e92429] text-white rounded-full flex items-center justify-center mr-3 shadow-md font-bold text-xs">3</span>
                             Sustainable Features
                           </h3>
@@ -474,14 +488,14 @@ export default function App() {
           {/* =========================================
               SPECIFICATIONS SECTION (Project Resources)
               ========================================= */}
-          <section id="specifications" className="scroll-mt-24 flex flex-col gap-12 md:gap-20">
+          <section id="specifications" className="scroll-mt-24 flex flex-col gap-10 md:gap-14">
             
             {/* 8. Project Resources */}
-            <div className="w-full max-w-xl mx-auto scale-95 origin-top">
+            <div className="w-full max-w-5xl mx-auto">
               <div className="bg-gradient-to-b from-[#0b529e]/5 to-transparent rounded-2xl px-6 pt-6 pb-4 relative z-10 flex flex-col items-center w-full">
-                <div className="mb-8 w-full flex justify-center">
-                  <div className="text-center bg-white shadow-sm p-4 rounded-xl border border-gray-100 inline-block w-full max-w-lg">
-                    <h2 className="text-[24px] font-bold text-[#0b529e] uppercase tracking-widest px-8 text-balance">PROJECT LANDSCAPE VIEW</h2>
+                <div className="mb-4 w-full flex justify-center">
+                  <div className="text-center bg-white shadow-sm p-3 rounded-xl border border-gray-100 inline-block w-full max-w-lg">
+                    <h2 className="text-[24px] text-[#0b529e] uppercase tracking-wide px-8 text-balance">PROJECT LANDSCAPE VIEW</h2>
                   </div>
                 </div>
                 
@@ -490,7 +504,7 @@ export default function App() {
                     <button
                       key={tab}
                       onClick={() => setActiveResourceTab(tab)}
-                      className={`px-8 py-3 text-sm font-bold uppercase tracking-widest rounded-full transition-all shadow-sm ${
+                      className={`px-8 py-3 text-sm font-bold uppercase tracking-wider rounded-full transition-all shadow-sm ${
                         activeResourceTab === tab ? 'bg-[#0b529e] text-white shadow-md scale-105' : 'bg-white text-gray-500 hover:bg-gray-50 hover:text-gray-800'
                       }`}
                     >
@@ -509,28 +523,54 @@ export default function App() {
                       className="relative text-center w-full h-full min-h-[300px] flex flex-col items-center justify-center py-6 gap-6"
                     >
                       {activeResourceTab === 'Floor Plans' ? (
-                        <div className="flex flex-col md:flex-row items-stretch justify-center gap-6 w-full overflow-y-auto max-h-[800px] p-2">
-                          <div className="flex-1 flex items-center justify-center bg-white rounded-lg p-4 drop-shadow border border-gray-100 h-[350px] md:h-[450px]">
+                        <div className="relative w-full h-[400px] md:h-[600px] flex items-center justify-center bg-white rounded-lg p-4 border border-gray-100">
+                          {floorPlanImages.map((img, idx) => (
                             <img 
-                              src="https://i.ibb.co/W4mJZZm3/Logistic-Park-Barasat-Logo-Direct-AW-03.png"
-                              alt="Logistic Park Barasat Logo Direct AW 03"
-                              className="w-full h-full object-contain"
+                              key={idx}
+                              src={img}
+                              alt={`Floor Plan ${idx + 1}`}
+                              className={`absolute w-full h-full object-contain p-4 transition-opacity duration-500 ${
+                                idx === currentFloorPlanIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                              }`}
                             />
+                          ))}
+                          
+                          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2 sm:px-4 z-20 pointer-events-none">
+                            <button 
+                              onClick={handlePrevFloorPlan}
+                              className="pointer-events-auto w-10 h-10 bg-white/80 hover:bg-white text-[#0b529e] rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 backdrop-blur-sm"
+                              aria-label="Previous floor plan"
+                            >
+                              <ChevronLeft className="w-6 h-6" />
+                            </button>
+                            <button 
+                              onClick={handleNextFloorPlan}
+                              className="pointer-events-auto w-10 h-10 bg-white/80 hover:bg-white text-[#0b529e] rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 backdrop-blur-sm"
+                              aria-label="Next floor plan"
+                            >
+                              <ChevronRight className="w-6 h-6" />
+                            </button>
                           </div>
-                          <div className="flex-1 flex items-center justify-center bg-white rounded-lg p-4 drop-shadow border border-gray-100 h-[350px] md:h-[450px]">
-                            <img 
-                              src="https://i.ibb.co/mF154GSg/Logistic-Park-Barasat-Logo-Direct-AW-04.png"
-                              alt="Logistic Park Barasat Logo Direct AW 04"
-                              className="w-full h-full object-contain"
-                            />
+                          
+                          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                            {floorPlanImages.map((_, idx) => (
+                              <button
+                                key={idx}
+                                onClick={() => setCurrentFloorPlanIndex(idx)}
+                                className={`h-2 rounded-full transition-all ${
+                                  idx === currentFloorPlanIndex ? 'bg-[#e92429] w-8' : 'bg-gray-300 hover:bg-gray-400 w-2'
+                                }`}
+                                aria-label={`Go to floor plan ${idx + 1}`}
+                              />
+                            ))}
                           </div>
                         </div>
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center p-2">
+                        <div className="w-full h-[400px] md:h-[600px] flex items-center justify-center p-2 bg-white rounded-lg border border-gray-100">
                           <img 
                             src="https://i.ibb.co/N2Ph8GJ2/Logistic-Park-Barasat-Logo-Direct-AW.png"
                             alt="Logistic Park Barasat Logo Direct AW"
-                            className="w-full max-w-3xl h-auto object-contain mx-auto drop-shadow-xl rounded max-h-[500px]"
+                            className="w-full h-full object-contain mx-auto rounded"
                           />
                         </div>
                       )}
@@ -559,13 +599,13 @@ export default function App() {
           {/* =========================================
               GALLERY SECTION
               ========================================= */}
-          <section id="gallery" className="scroll-mt-24 flex flex-col gap-12 md:gap-20 -mt-10">
+          <section id="gallery" className="scroll-mt-24 flex flex-col gap-10 md:gap-14 -mt-10">
             
             {/* 9. Gallery */}
             <div className="w-full max-w-4xl mx-auto">
               <div className="relative z-10">
-                <div className="bg-transparent text-center mb-6">
-                  <h2 className="text-[24px] font-bold text-[#0b529e] uppercase tracking-widest text-balance">WITNESS BUSINESSES TAKE FLIGHT HERE</h2>
+                <div className="bg-transparent text-center mb-2">
+                  <h2 className="text-[24px] text-[#0b529e] uppercase tracking-wide text-balance">WITNESS BUSINESSES TAKE FLIGHT HERE</h2>
                 </div>
                 
                 <div className="relative w-full aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-xl mt-4">
@@ -616,7 +656,7 @@ export default function App() {
           {/* =========================================
               CONNECTIVITY & NEIGHBOURHOOD SECTION
               ========================================= */}
-          <section id="connectivity" className="scroll-mt-24 flex flex-col gap-12 md:gap-20">
+          <section id="connectivity" className="scroll-mt-24 flex flex-col gap-10 md:gap-14">
             
             {/* 10. Connectivity & Neighbourhood */}
             <div className="w-full max-w-5xl mx-auto">
@@ -636,9 +676,9 @@ export default function App() {
                 </div>
                 
                 <div className="w-full md:w-1/2 flex flex-col bg-white z-20 max-h-[450px]">
-                  <div className="p-6 flex flex-col items-center justify-center text-center border-b border-gray-50 flex-none gap-6">
-                    <h2 className="text-[24px] font-bold text-[#0b529e] uppercase tracking-widest text-balance leading-snug">WELCOME TO THE GATEWAY OF EASE</h2>
-                    <p className="text-[18px] text-[#e92429] uppercase tracking-widest font-bold text-balance">Seamless Access to Key Commercial Corridors</p>
+                  <div className="p-6 flex flex-col items-center justify-center text-center border-b border-gray-50 flex-none gap-4">
+                    <h2 className="text-[24px] text-[#0b529e] uppercase tracking-wide text-balance leading-snug">WELCOME TO THE GATEWAY OF EASE</h2>
+                    <p className="text-[18px] text-[#e92429] uppercase tracking-wide font-bold text-balance">Seamless Access to Key Commercial Corridors</p>
                   </div>
                   
                   <div className="flex-1 p-6 overflow-y-auto">
@@ -678,7 +718,7 @@ export default function App() {
             {/* 11. Awards & Accolades */}
             <div className="w-full max-w-5xl mx-auto overflow-hidden">
               <div className="text-center bg-transparent relative z-10">
-                <h2 className="text-[24px] font-bold text-[#0b529e] uppercase tracking-widest mb-8 text-balance px-8">ACHIEVEMENTS THAT DEFINE OUR LEGACY</h2>
+                <h2 className="text-[24px] text-[#0b529e] uppercase tracking-wide mb-4 text-balance px-8">ACHIEVEMENTS THAT DEFINE OUR LEGACY</h2>
                 <div className="relative w-full overflow-hidden py-6 flex">
                   <motion.div 
                     animate={{ x: ["0%", "-50%"] }}
@@ -711,7 +751,7 @@ export default function App() {
           
           {/* Col 1 */}
           <div className="flex-1 flex flex-col justify-between">
-            <h4 className="font-bold text-gray-300 uppercase tracking-widest mb-3 md:mb-6">Lets Connect</h4>
+            <h4 className="text-gray-300 uppercase tracking-wider mb-3 md:mb-6">Lets Connect</h4>
             <div className="w-32 md:w-48 relative flex items-center justify-start overflow-hidden">
                <img 
                   src="https://i.ibb.co/cSWLfkKq/Logistic-Park-Barasat-Logo-Direct-AW.png"
@@ -729,7 +769,7 @@ export default function App() {
           {/* Col 2 */}
           <div className="flex-1 flex flex-col text-blue-100 mt-6 md:mt-0">
             <div className="mb-4 md:mb-6">
-              <h4 className="font-bold text-gray-300 uppercase tracking-widest mb-1 md:mb-2">Address</h4>
+              <h4 className="text-gray-300 uppercase tracking-wider mb-1 md:mb-2">Address</h4>
               <p className="text-[14px] leading-relaxed">
                 123 Logistics Park Way<br/>
                 Jessore Road, Barasat<br/>
@@ -796,7 +836,7 @@ export default function App() {
             </div>
 
             <div className="p-8">
-              <h3 className="text-[24px] font-bold text-white text-center mb-6">Get in touch with us</h3>
+              <h3 className="text-[24px] text-white text-center mb-4">Get in touch with us</h3>
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div>
                   <input 
