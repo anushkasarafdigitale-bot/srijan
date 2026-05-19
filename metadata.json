@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Remix: Remix: Srijan Barasat",
+  "description": "Website for Srijan Barasat Logistics Park, a Grade A industrial and garment-focused logistics destination.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
